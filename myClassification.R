@@ -105,6 +105,7 @@ action.class_nb  <- function(obj, data) {
 class_rf <- function(attribute, mtry = NULL, ntree = seq(50, 500, 50)) {
   obj <- classification(attribute)
   obj$ntree <- ntree
+  obj$mtry <- mtry
   
   class(obj) <- append("class_rf", class(obj))    
   return(obj)
