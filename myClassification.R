@@ -122,15 +122,13 @@ prepare.class_rf <- function(obj, data) {
   tuned <- tune.randomForest(regression, data=data, mtry=obj$mtry, ntree=obj$ntree)
   obj$model <- tuned$best.model 
   
-  msg <- sprintf("mtry=%d,ntree=%d", obj$model$mtry, obj$model$ntree)
-  obj <- register_log(obj, msg)
-  return(obj)
+  msg <- sprintf("mtry=%d,ntree=%d", obj$model$mtry, obj$model$ntree)  
+  return(register_log(obj, msg))
 }
 
 action.class_rf  <- function(obj, data) {
-  predictors = data[,obj$predictors]   
-  prediction <- predict(obj$model, predictors, type="prob")  
-  return(prediction)
+  predictors = data[,obj$predictors]  
+  return(predict(obj$model, predictors, type="prob"))
 }
 
 # mlp_nnet
